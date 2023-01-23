@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> <configuration status="WARN">
+  <Properties>
+  <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36}:%L - %msg%n</Property>
+</Properties>
+  <Appenders> <File name="Station_not_found" fileName="logs/input_errors.log">
+    <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+    <PatternLayout pattern="${LOG_PATTERN}"/> </File>
+    <File name="Station_found" fileName="logs/search.log">
+      <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+      <PatternLayout pattern="${LOG_PATTERN}"/> </File>
+    <File name="Exception" fileName="logs/exceptions.log">
+      <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+      <PatternLayout pattern="${LOG_PATTERN}"/>
+    </File>
+  </Appenders>
+  <Loggers> <Root level="TRACE"> <Appender-ref ref="Station_not_found" level="error"/>
+    <Appender-ref ref="Station_found" level="info"/>
+    <Appender-ref ref="Exception" level="debug"/>
+  </Root>
+  </Loggers>
+</configuration>
