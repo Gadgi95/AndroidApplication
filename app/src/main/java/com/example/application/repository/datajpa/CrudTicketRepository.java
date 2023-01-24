@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+//Нужен для отправки запросов касаемо заявок непосредственно в базу данных
 public interface CrudTicketRepository extends JpaRepository<Ticket, Integer> {
 
     @Modifying

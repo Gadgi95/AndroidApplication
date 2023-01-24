@@ -9,8 +9,9 @@ package com.example.application.model;
  который возвращает строковое представление сущности.
  */
 
-import com.example.Application.View;
-import com.example.Application.util.validation.NoHtml;
+import com.example.application.View;
+import com.example.application.util.validation.NoHtml;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
