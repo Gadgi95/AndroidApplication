@@ -4,6 +4,7 @@ import com.example.application.model.User;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
+//Нужен для отправки запросов касаемо пользователей непосредственно в базу данных
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
 
     @Modifying

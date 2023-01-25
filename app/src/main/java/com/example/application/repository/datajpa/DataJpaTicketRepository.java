@@ -8,9 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+//Этот класс просто реализует интерфейс и в нем прописывается дополнительно то
+//что касается запросов (можно добавить нужные сортировки), если CrudTicketRepository,
+//который реализует JpaRepository<User, Integer> не имеет данных методов по умолчанию.
 @Repository
 public class DataJpaTicketRepository implements TicketRepository {
 
+    //Сортировка материалов по дате создания,
+    //тоесть заявки будут выводиться в графический интерфейс в отсортированном порядке
     private static final Sort SORT_CREATION_DATE = Sort.by(Sort.Direction.ASC, "creationDate");
 
     private final CrudTicketRepository crudTicketRepository;
@@ -19,6 +24,7 @@ public class DataJpaTicketRepository implements TicketRepository {
         this.crudTicketRepository = crudTicketRepository;
     }
 
+    //Сохранение заявки в базу данных
     @Override
     public Ticket save(Ticket ticket) {
         if (!ticket.isNew()) {
@@ -27,11 +33,13 @@ public class DataJpaTicketRepository implements TicketRepository {
         return crudTicketRepository.save(ticket);
     }
 
+    //Удаление заявки из базы данных
     @Override
     public boolean delete(int id, int userId) {
         return crudTicketRepository.delete(id, userId) != 0;
     }
 
+    //Получение заявки из базы данных
     @Override
     public Ticket get(int id, int userId) {
         if (crudTicketRepository.findById(id) == null) {
@@ -40,11 +48,13 @@ public class DataJpaTicketRepository implements TicketRepository {
         return crudTicketRepository.findById(id);
     }
 
+    //Получение всего списка заявок в отсортированом порядке по дате создания
     @Override
     public List<Ticket> getAll(int userId) {
         return crudTicketRepository.findAll(SORT_CREATION_DATE);
     }
 
+    //Получение заявки с материалами внутри нее
     @Override
     public Ticket getWithMaterial(int id, int userId, List<Material> materialList) {
         return crudTicketRepository.getWithMaterial(id, userId, materialList);
